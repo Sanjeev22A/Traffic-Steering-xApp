@@ -62,5 +62,92 @@ The set of modules that can be built and not built are shown in the figure. The 
 <img width="348" height="617" alt="image" src="https://github.com/user-attachments/assets/ea750ff5-239f-4abe-ab1c-757d0182493a" />
 <img width="622" height="669" alt="image" src="https://github.com/user-attachments/assets/307dfe77-9e03-4da9-b16a-f8f8ee030fef" />
 
+## Step 3: Installing additional packages
+
+### Step 3.1: Installing qt5
+```bash
+sudo apt update
+sudo apt install snapd
+sudo snap install qt5-core22
+```
+
+<img width="650" height="79" alt="image" src="https://github.com/user-attachments/assets/43c1ac02-3456-4baf-875c-8ed6f4a871bd" />
+<br>
+
+### Step 3.2: Installing sqlite3
+```bash
+sido apt update
+sudo apt install sqllite3
+```
+<img width="738" height="363" alt="image" src="https://github.com/user-attachments/assets/464539bd-b76d-4fc5-87a5-3f8872fca0a1" />
+### Step 3.3: Installing python venv and cppyy and python bindings
+installing the necessary dependencies
+```bash
+sudo apt update
+sudo apt install -y \
+  build-essential \
+  cmake \
+  python3-dev \
+  python3-venv \
+  libclang-dev \
+  llvm-dev \
+  clang
+```
+<img width="918" height="817" alt="image" src="https://github.com/user-attachments/assets/08cba30d-9fe0-48aa-83e1-c0565f9ba836" />
+
+Creating a virtual environment for python bindings for ns3
+```bash
+python3 -m venv ns3-pyenv
+```
+then check if venv is created or not
+```bash
+ls -a
+```
+<img width="918" height="202" alt="image" src="https://github.com/user-attachments/assets/d4182053-b166-47b0-9493-67f4237710fd" />
+
+Then we start the virtual environment using the command
+```bash
+source ns3-env/bin/activate
+```
+
+<br>
+check the version of venv using the command:
+```bash
+python --version
+```
+<img width="848" height="261" alt="image" src="https://github.com/user-attachments/assets/8a8aa381-580c-496b-9886-7fc8ccea349e" />
 
 
+Install cppyy for python bindings in ns3
+
+```bash
+ pip install --upgrade pip setuptools wheel
+pip install cppyy==3.1.2
+
+```
+Checking if cppyy instalation is correct
+```bash
+python - << EOF
+import cppyy
+print("cppyy version:", cppyy.__version__)
+EOF
+```
+<img width="943" height="744" alt="image" src="https://github.com/user-attachments/assets/e822f809-9101-476d-9dcc-e852f83756f0" />
+
+Configuring the python bindings
+```bash
+./ns3 configure --enable-python-bindings
+```
+<img width="930" height="840" alt="image" src="https://github.com/user-attachments/assets/8f967129-98a8-4b00-a56c-0b8ed2e993bf" />
+
+Build ns3 again
+```bash
+./ns3 build
+```
+<img width="703" height="89" alt="image" src="https://github.com/user-attachments/assets/0c20d98f-5fd4-45d3-9756-edf246020cf7" />
+
+Test the python bindings with a sample program
+```bash
+./ns3 run "examples/tutorial/first.py"
+```
+<img width="918" height="304" alt="image" src="https://github.com/user-attachments/assets/3b668c6d-52fd-47ac-9a14-8f4e0f668188" />
