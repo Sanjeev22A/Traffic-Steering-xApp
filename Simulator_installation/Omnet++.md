@@ -2,9 +2,7 @@
 
 A comprehensive guide to install OMNeT++ 6.3.0 on Linux systems.
 
-## Prerequisites
-
-### Check Your Linux Version
+## Step 1: Check Your Linux Version
 
 Before starting the installation, verify your Linux distribution and version:
 
@@ -12,26 +10,34 @@ Before starting the installation, verify your Linux distribution and version:
 lsb_release -a
 ```
 
-## Installation Steps
+---
 
-### 1. Download OMNeT++
+## Step 2: Download OMNeT++
 
 Download the Linux-specific archive from the official website:
+
 - Visit [https://omnetpp.org/download/](https://omnetpp.org/download/)
-- Download `omnetpp-6.3.0-linux-x86_64.tgz`
-- 
+- Make sure you select the Linux-specific archive: `omnetpp-6.3.0-linux-x86_64.tgz`
 
-### 2. Extract the Archive
+![Step 2: Download OMNeT++](./images/image1.png)
 
-Copy the archive to your desired installation directory (typically `/home/`) and extract it:
+---
+
+## Step 3: Extract the Archive
+
+Copy the archive to the directory where you want to install it (usually your home directory `/home/`). Open a terminal and extract the archive:
 
 ```bash
 tar xvfz omnetpp-6.3.0-linux-x86_64.tgz
 ```
 
-This creates an `omnetpp-6.3.0` subdirectory containing all OMNeT++ files.
+This will create an `omnetpp-6.3.0` subdirectory with the OMNeT++ files in it.
 
-### 3. Update System Packages
+![Step 3: Extract the Archive](./images/image2.png)
+
+---
+
+## Step 4: Update System Packages
 
 Update your system's package manager:
 
@@ -39,7 +45,11 @@ Update your system's package manager:
 sudo apt update
 ```
 
-### 4. Install Dependencies
+![Step 4: Update System Packages](./images/image3.png)
+
+---
+
+## Step 5: Install Dependencies
 
 Install all required build tools and libraries:
 
@@ -47,25 +57,33 @@ Install all required build tools and libraries:
 sudo apt-get install build-essential clang lld gdb bison flex perl python3 python3-pip qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.0-37
 ```
 
-### 5. Install Python Packages
+![Step 5: Install Dependencies](./images/image4.png)
 
-Install essential Python packages system-wide:
+---
+
+## Step 6: Install Python Packages
+
+Install essential Python packages:
 
 ```bash
 python3 -m pip install --user --upgrade numpy pandas matplotlib scipy seaborn posix_ipc
 ```
 
-## Setting Up the Python Virtual Environment
+![Step 6: Install Python Packages](./images/image5.png)
 
-### 6. Create a Virtual Environment
+---
 
-Create a Python virtual environment for OMNeT++:
+## Step 7: Create a Virtual Environment
+
+Open a terminal and create a Python virtual environment:
 
 ```bash
 python3 -m venv .venv --upgrade-deps --clear --prompt "omnetpp/.venv"
 ```
 
-### 7. Activate the Virtual Environment
+---
+
+## Step 8: Activate the Virtual Environment
 
 Activate the virtual environment:
 
@@ -73,64 +91,74 @@ Activate the virtual environment:
 source .venv/bin/activate
 ```
 
-### 8. Install Python Requirements
+---
 
-Upgrade pip and install required packages:
+## Step 9: Install Python Requirements
+
+Install required Python packages using pip. It's also common to upgrade pip itself:
 
 ```bash
 python3 -m pip install --upgrade pip
 python3 -m pip install -r python/requirements.txt
 ```
 
-## Configuring OMNeT++
+---
 
-### 9. Set Up Environment Variables
+## Step 10: Set Up Environment Variables
 
-Navigate to the OMNeT++ directory and source the setup script to configure environment variables and PATH:
+OMNeT++ requires that certain environment variables are set and the `omnetpp-6.3.0/bin` directory is in the PATH. Source the setenv script to set up all these variables:
 
 ```bash
 cd omnetpp-6.3.0
 source setenv
 ```
 
-### 10. Configure the Build
+---
 
-Run the configuration script to detect your system's software and configuration:
+## Step 11: Configure the Build
+
+The configure script detects installed software and the configuration of your system:
 
 ```bash
 ./configure
 ```
 
-### 11. Compile OMNeT++
+---
 
-Compile the framework:
+## Step 12: Compile OMNeT++
+
+When `./configure` has finished, you can compile OMNeT++:
 
 ```bash
 make
 ```
 
-## Verifying the Installation
+---
 
-### 12. Test the Installation
+## Step 13: Verify Installation
 
-Navigate to the sample directory and run the Aloha example:
+Test the installation by running the Aloha example:
 
 ```bash
 cd samples/aloha
 ./aloha
 ```
 
-### 13. Start the IDE
+---
 
-Launch the OMNeT++ IDE:
+## Step 14: Start the IDE
+
+To start the OMNeT++ IDE:
 
 ```bash
 omnetpp
 ```
 
-## Reconfiguring and Rebuilding
+---
 
-### Clean Build
+## Step 15: Reconfigure and Rebuild Libraries
+
+### Full Reconfiguration and Rebuild
 
 If you need to reconfigure and rebuild everything:
 
@@ -140,19 +168,18 @@ make cleanall
 make
 ```
 
-### Rebuild Specific Library
+### Rebuild a Specific Library
 
-To recompile a specific library (e.g., the simulation library):
+If you want to recompile just a single library, change to the directory of the library (e.g., `cd src/sim`) and type:
 
 ```bash
-cd src/sim
 make clean
 make
 ```
 
 ### Build Specific Modes
 
-By default, libraries are compiled in both debug and release modes. To build only a specific mode:
+By default, libraries are compiled in both debug and release mode. If you want to make release or debug builds only, use:
 
 **Release mode only:**
 ```bash
@@ -164,14 +191,6 @@ make MODE=release
 make MODE=debug
 ```
 
-## Troubleshooting
+---
 
-If you encounter any issues during installation:
-- Ensure all dependencies are properly installed
-- Verify your Python version is 3.6 or higher
-- Check that your virtual environment is activated before running pip commands
-- Review the output of `./configure` for any missing dependencies
-
-## Additional Resources
-
-For more information and advanced configuration options, visit the [official OMNeT++ documentation](https://omnetpp.org/).
+For more information and advanced configuration options, visit the [official OMNeT++ website](https://omnetpp.org/).
