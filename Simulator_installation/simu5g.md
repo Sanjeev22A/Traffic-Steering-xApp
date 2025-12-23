@@ -16,3 +16,16 @@ cd inet
 git checkout v4.5.4
 <img width="932" height="396" alt="image" src="https://github.com/user-attachments/assets/57548ffb-4c19-43ad-aa01-8414e4c0f1cc" />
 
+<img width="940" height="686" alt="image" src="https://github.com/user-attachments/assets/c8ceba11-bd28-4800-977a-45e7ad54362a" />
+source setenv
+<img width="940" height="76" alt="image" src="https://github.com/user-attachments/assets/e6763e5f-936d-4904-a5b4-b58a5e3adf98" />
+echo $INET_ROOT
+<img width="940" height="76" alt="image" src="https://github.com/user-attachments/assets/317ace0c-4477-47a1-87fb-c5ef04bac1d1" />
+make makefiles
+<img width="940" height="76" alt="image" src="https://github.com/user-attachments/assets/1168cede-fcab-4c3b-9a08-4969e117387a" />
+
+make -j$(nproc)
+<img width="921" height="903" alt="image" src="https://github.com/user-attachments/assets/35c443c0-657b-4b35-829f-5e0dd56a1a1e" />
+cd examples/inet
+
+<img width="926" height="125" alt="image" src="https://github.com/user-attachments/assets/062117ec-ee15-42c6-bad8-172e31803d27" />
